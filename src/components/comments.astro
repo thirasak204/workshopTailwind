@@ -1,0 +1,60 @@
+---
+const { star, name, comment } = Astro.props;
+---
+
+<li class="p-4 rounded-2xl bg-white shadow-zinc-700/10 shadow-md hover:shadow-lg transition">
+  <p class="flex items-center gap-1 text-xs text-yellow-500 pb-1">
+    {/* ดาวเต็ม */}
+    {
+      Array.from({ length: Math.floor(star) }).map((_, i) => (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+        >
+          <path
+            fill="currentColor"
+            d="m5.825 21l1.625-7.025L2 9.25l7.2-.625L12 2l2.8 6.625l7.2.625l-5.45 4.725L18.175 21L12 17.275z"
+          />
+        </svg>
+      ))
+    }
+
+    {/* ครึ่งดาว */}
+    {
+      star % 1 !== 0 && (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+        >
+          <path
+            fill="currentColor"
+            d="m15.15 16.85l-.825-3.6l2.775-2.4l-3.65-.325l-1.45-3.4v7.8zM5.825 21l1.625-7.025L2 9.25l7.2-.625L12 2l2.8 6.625l7.2.625l-5.45 4.725L18.175 21L12 17.275z"
+          />
+        </svg>
+      )
+    }
+
+    <span class="text-black">{star}/5</span>
+  </p>
+  <h5 class="font-bold text-lg mb-2">
+    {name}
+    <svg
+      class="inline-block  text-green-600"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      ><path
+        fill="currentColor"
+        fill-rule="evenodd"
+        d="M12 21a9 9 0 1 0 0-18a9 9 0 0 0 0 18m-.232-5.36l5-6l-1.536-1.28l-4.3 5.159l-2.225-2.226l-1.414 1.414l3 3l.774.774z"
+        clip-rule="evenodd"></path></svg>
+  </h5>
+  <p>
+    {comment}
+  </p>
+</li>

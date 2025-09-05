@@ -1,0 +1,40 @@
+
+---
+const { img, name, star, price, sale} = Astro.props;
+---
+<li class="p-4 rounded-2xl bg-white shadow-zinc-700/10 shadow-md hover:shadow-lg transition">
+  <img class="rounded-2xl" src={img} alt={name} />
+  <h3 class="font-bold text-xl py-1">{name}</h3>
+  <p class="flex items-center gap-1 text-xs text-yellow-500 pb-1">
+    {/* ดาวเต็ม */}
+    {Array.from({ length: Math.floor(star) }).map((_, i) => (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m5.825 21l1.625-7.025L2 9.25l7.2-.625L12 2l2.8 6.625l7.2.625l-5.45 4.725L18.175 21L12 17.275z"/></svg>
+    ))}
+
+    {/* ครึ่งดาว */}
+    {star % 1 !== 0 && (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m15.15 16.85l-.825-3.6l2.775-2.4l-3.65-.325l-1.45-3.4v7.8zM5.825 21l1.625-7.025L2 9.25l7.2-.625L12 2l2.8 6.625l7.2.625l-5.45 4.725L18.175 21L12 17.275z"/></svg>
+    )}
+
+    <span class="text-black">{star}/5</span>
+  </p>
+  
+  <section>
+    {
+      sale ? (
+        <>
+        <div class="flex items-center gap-3">
+          <p class="mt-1 font-bold text-xl">${sale.price}
+          </p>
+          <p class="line-through text-xl text-zinc-400">{price}</p>
+          <p class="bg-red-300 px-3 py-2 rounded-2xl text-red-600 text-xs">-{sale.percentage}%</p>
+        </div>
+        </>
+      ) : (  
+        <p class="mt-1 font-bold text-xl">${price}</p>
+      )
+    }
+
+  </section>
+</li>
+
